@@ -1,6 +1,6 @@
 # dsc_envisalink
 
-Brute-force master-code finder for [DS](https://www.dsc.com/) alarm panels accessible through an **EnvisaLink** Ethernet interface.
+Brute-force master-code finder for [DSC](https://www.dsc.com/) alarm panels accessible through an **EnvisaLink** Ethernet interface.
 
 ## What it does
 
