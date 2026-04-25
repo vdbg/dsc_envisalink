@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Brute-force master code finder for DSC alarm systems via EnvisaLink.
+"""Brute-force installer code finder for DSC alarm systems via EnvisaLink.
 
 Iterates through all 4-digit codes (0000-9999), testing each against the DSC
 panel by entering installer mode (*8) and checking for a success response (680).
@@ -188,7 +188,7 @@ def connect_fresh(host: str, port: int, password: str) -> socket.socket:
 
 def run(args: argparse.Namespace, sock: socket.socket | None) -> None:
     """Execute the brute-force search loop."""
-    print("DSC master-code finder (resumable)")
+    print("DSC installer-code finder (resumable)")
     print(f"Fail log : {args.fail_file}")
     print(f"Target   : {args.host}:{args.port}")
     print()
@@ -215,7 +215,7 @@ def run(args: argparse.Namespace, sock: socket.socket | None) -> None:
                 sock = connect_fresh(args.host, args.port, args.password)
 
             if test_code(sock, code, test_num, args.partition):
-                print(f"\nMASTER CODE: {code}")
+                print(f"\nINSTALLER CODE: {code}")
                 print("Verify on keypad!")                
                 return
 
@@ -256,7 +256,7 @@ def run(args: argparse.Namespace, sock: socket.socket | None) -> None:
             sock = connect_fresh(args.host, args.port, args.password)
 
     if not interrupted:
-        print("\nAll 10000 codes exhausted without finding master code")
+        print("\nAll 10000 codes exhausted without finding the installer code")
     print(f"{len(failed_codes)} codes logged in {args.fail_file}")
 
 
@@ -268,7 +268,7 @@ def run(args: argparse.Namespace, sock: socket.socket | None) -> None:
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(
-        description="Brute-force master code finder for DSC alarm panels via EnvisaLink.",
+        description="Brute-force installer code finder for DSC alarm panels via EnvisaLink.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(

@@ -1,10 +1,12 @@
 # dsc_envisalink
 
-Brute-force master-code finder for [DS](https://www.dsc.com/) alarm panels accessible through an **EnvisaLink** Ethernet interface.
+Brute-force installer-code finder for [DSC](https://www.dsc.com/) alarm panels accessible through an **EnvisaLink** Ethernet interface.
+
+**NOTE:** this script finds the **installer** code, *not* the master code. The installer code is much more powerful, and allows (among other things) to change the master code.
 
 ## What it does
 
-The script iterates through all 4-digit master codes (0000 to 9999) until finding one that successfully enters installer mode. Note: this can take several days if the master code is a high number.
+The script iterates through all 4-digit installer codes (0000 to 9999) until finding one that successfully enters installer mode. Note: this can take several days if the installer code is a high number.
 
 Failed codes are persisted to a file so that a run can be resumed where it left off in case the script is interrupted (e.g., machine reboot, manual stop through `Ctrl-C`).
 
@@ -27,7 +29,7 @@ python main.py --host 192.168.1.XXX
 This will create `fail.txt` in the current directory and start from code `0000`.  
 Subsequent runs will skip codes already recorded in `fail.txt`.
 
-The script stops when it finds the master code.
+The script stops when it finds the installer code.
 
 ### Customized run
 
@@ -39,5 +41,5 @@ python main.py --host 10.0.0.50 --port 4026 --password custom_passwd --fail-file
 
 Press `Ctrl-C` at any time to stop. The next run will automatically skip every code already logged in the fail file.
 
-Make sure to invoke the script with the same parameters should be used on subsequent runs, or delete the fail file.
+If invoking the script on subsequent runs, make sure to invoke it with the same parameters that were used previously, or delete the fail file.
 
